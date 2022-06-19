@@ -13,22 +13,22 @@ main = do
     colors <- Prelude.words <$> readFile colorsFileName
     templateFileName <- getDataFileName "template.silk"
     template <- readFile templateFileName
-    content <- readFile $ head arg
+    content <- readFile $ arg !! 0
     print "Generating HTML file..."
     let htmlGenerated =
             case getArgsIndex 1 arg of
                 Just "--weezer" ->
                     applyWeezerTheme $
                     generateFullPage
-                        (removeExtensionMD (head arg))
+                        (removeExtensionMD (arg !! 0))
                         content
                         template
                         ["#009CCF", "#BDD639", "#EF1831", "#ECECEC"]
                 _ ->
                     generateFullPage
-                        (removeExtensionMD (head arg))
+                        (removeExtensionMD (arg !! 0))
                         content
                         template
                         colors
-    writeFile (removeExtensionMD (head arg) ++ ".html") $ T.unpack htmlGenerated
+    writeFile (removeExtensionMD (arg !! 0) ++ ".html") $ T.unpack htmlGenerated
     print "File successfully created"
