@@ -84,14 +84,14 @@ document.addEventListener("touchstart", handleTouchStart, { passive: false });
             document.onkeydown = function getKey(e){
                 e = e || window.event;
                 if (e.repeat) return
-                if(e.keyCode == '38' || e.keyCode == '40'){
+                if(e.keyCode == '37' || e.keyCode == '38' || e.keyCode == '39' || e.keyCode == '40'){
                     var selectorId = getSelectorId();
 
-                    if(e.keyCode == '38'){
+                    if(e.keyCode == '37' || e.keyCode == '38'){
                         document.getElementById("rd" + (parseInt(selectorId.substring(2)) - 1)).checked = true;
                     }
                 
-                    if(e.keyCode == '40'){
+                    if(e.keyCode == '39' || e.keyCode == '40'){
                         document.getElementById("rd" + (parseInt(selectorId.substring(2)) + 1)).checked = true;
                     }
                 }
