@@ -5,17 +5,15 @@ import Data.List
 import CMark
 import qualified Data.Text as T
 
-
 generateFullPage :: String -> String -> String -> [String] -> T.Text
 generateFullPage title content template colors = do
-    let sectionsList = replaceThreeDashes $ map (T.pack) $ split "---" (sanitizeMarkdown content)
-    let sections = map (commonmarkToHtml []) $ sectionsList
+    let sectionsList = replaceThreeDashes $ map T.pack $ split "---" (sanitizeMarkdown content)
+    let sections = map (commonmarkToHtml []) sectionsList
     let templateTitle = T.replace "<< +TITLE+ >>" (T.pack title) $ T.pack template
     let templateBackgroundColor = T.replace "<< +BACKGROUND COLOR+ >>" (generateBackgroundCSS (take (length sections) (cycle colors))) templateTitle
     let templateActions = T.replace "<< +ACTIONS+ >>" (generateActionsCSS (length sections)) templateBackgroundColor
     let templateRadioButtons = T.replace "<< +RADIOBUTTONS+ >>" (generateRadioButtons (length sections)) templateActions
-    T.replace "<< +SECTIONS+ >>" (generateSectionsHTML (map (T.unpack) sections)) templateRadioButtons
-                                                   
+    T.replace "<< +SECTIONS+ >>" (generateSectionsHTML (map T.unpack sections)) templateRadioButtons
 
 generateBackgroundCSS :: [String] -> T.Text
 generateBackgroundCSS colors = T.pack $
@@ -49,15 +47,14 @@ generateRadioButtons size = T.pack $
 
 replaceThreeDashes :: [T.Text] -> [T.Text]
 replaceThreeDashes sections = [
-    if(isInfixOf "<< +THREEDASHES+ >>" (T.unpack txt)) then 
-        (T.replace "<< +THREEDASHES+ >>" "\'---\'" txt) 
+    if "<< +THREEDASHES+ >>" `isInfixOf` T.unpack txt then 
+        T.replace "<< +THREEDASHES+ >>" "\'---\'" txt
     else txt 
     | txt <- sections ]
 
-
 applyWeezerTheme ::T.Text-> T.Text
-applyWeezerTheme fullpage = T.replace
+applyWeezerTheme = T.replace
     "body{\n            font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n\
     \            font-size: 2vw;\n            color: wheat;\n        }\n\n" "body{\n\
     \            font-family: \"Century Gothic\", CenturyGothic, AppleGothic, sans-serif;\n\
-    \            font-size: 2vw;\n            color: black;\n        }\n\n" fullpage
+    \            font-size: 2vw;\n            color: black;\n        }\n\n"
