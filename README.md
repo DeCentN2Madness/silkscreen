@@ -4,14 +4,14 @@ Silkscreen converts Markdown files to fullPage-style slides in html. See the [ex
 
 ![silkscreen-gif](https://raw.githubusercontent.com/carlosfrodrigues/silkscreen/master/github-assets/silkscreen.gif)
 
-### How to use
+## How to use
 
 ```sh
 silkscreen yourmarkdownfile.md
 ```
 This generates an HTML file in the same directory and with the same name as the markdown file.
 
-### Install
+## Install
 
 You need Cabal to install. Run the following within the silkscreen directory.
 
@@ -20,13 +20,19 @@ cabal install
 ```
 It will install silkscreen and the CMark library dependency.
 
-### Configuration
+## Configuration
 
 There are two files inside the config folder.
 
 - **colors**: A file where each line has a HEX color.The colors are used in the background in repeat. You can edit this file choosing the colors you want.
 - **template.silk**: the HTML template used to generate the fullpage.
 
-### Easter Egg
+## Easter Egg
 
 Run silkscreen with the flag `--weezer`.
+
+## TODO
+
+- separate javascript from template
+- separate css from template
+- use pandoc to parse markdown
