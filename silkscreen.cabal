@@ -21,7 +21,7 @@ data-files:          colors
                      ,template.silk
 data-dir:            config
 library
-  build-depends:       base >=4.14 && <4.15
+  build-depends:       base >=4.14 && <4.16
                        ,cmark
                        ,text
   hs-source-dirs:      src
@@ -33,7 +33,7 @@ executable silkscreen
   main-is:             Main.hs
 
   -- other-extensions:
-  build-depends:       base >=4.14 && <4.15
+  build-depends:       base >=4.14 && <4.16
                        ,cmark
                        ,text
 
