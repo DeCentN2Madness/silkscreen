@@ -1,6 +1,8 @@
 # Silkscreen
 
-### Generate FullPage with Markdown
+## Haskell Application
+
+Generate sites similar to fullPage.js using Markdown
 
 ---
 
@@ -15,9 +17,8 @@
 
 ![computer](image.jpg)
 
-#### You can include images too
-
-#####  just use markdown syntax
+### You can include images
+####  just use markdown syntax
 
 ---
 
@@ -26,3 +27,9 @@
 ## CREATIVE
 
 ---
+
+# :)
+
+## L8rz!
+
+visit [the Adamint @ Pi Place](https://theadamint.com/preview) next!
